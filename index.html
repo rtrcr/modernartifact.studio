@@ -22,6 +22,16 @@ document.addEventListener('play',function(e){if(e.target.tagName==='VIDEO')m(e.t
 @font-face{font-family:'Gilda Display';src:url('assets/fonts/GildaDisplay-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
 @font-face{font-family:'Hanken Grotesk';src:url('assets/fonts/HankenGrotesk-Variable.ttf') format('truetype');font-weight:100 900;font-display:swap}
 body{margin:0;background:#1C1A18;color:#1C1A18;font-family:'Hanken Grotesk',sans-serif}a{color:inherit;text-decoration:none}a:hover{opacity:.6}
+html{scroll-behavior:smooth}[id]{scroll-margin-top:16px}
+.ma-form{width:100%;max-width:560px;display:flex;flex-direction:column;gap:28px;text-align:left}
+.ma-form label{display:flex;flex-direction:column;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.14em;color:#C9C2B6}
+.ma-form input,.ma-form textarea{font:inherit;font-size:clamp(16px,1.6vw,18px);font-weight:400;letter-spacing:0;color:#EFECE6;background:transparent;border:0;border-bottom:1px solid rgba(239,236,230,.4);border-radius:0;padding:6px 0 10px;outline:none;transition:border-color .2s}
+.ma-form textarea{resize:vertical;min-height:96px}
+.ma-form input:focus,.ma-form textarea:focus{border-bottom-color:#EFECE6}
+.ma-form button{align-self:center;font:inherit;font-size:clamp(16px,1.6vw,18px);font-weight:500;color:#1C1A18;background:#EFECE6;border:0;border-radius:999px;padding:14px 36px;cursor:pointer;transition:opacity .2s}
+.ma-form button:hover{opacity:.8}.ma-form button:disabled{opacity:.5;cursor:default}
+.ma-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.ma-note{min-height:1.5em;font-size:14px;text-align:center;color:#C9C2B6}
 </style>
 </helmet>
 <main style="font-family:'Hanken Grotesk',sans-serif">
@@ -29,7 +39,7 @@ body{margin:0;background:#1C1A18;color:#1C1A18;font-family:'Hanken Grotesk',sans
         <sc-if value="{{ showGrain }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;inset:0;pointer-events:none;z-index:5;opacity:.24;mix-blend-mode:multiply;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22240%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E')"></div></sc-if>
         <div style="display:flex;justify-content:space-between;align-items:center;padding:20px clamp(20px,4vw,40px);font-size:14px;font-weight:500;flex-wrap:wrap;gap:16px">
           <img src="assets/logo/ma-insignia-ink.svg" alt="Modern Artifact" style="height:26px;display:block">
-          <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,3vw,32px)"><a href="#">Work</a><a href="#">Services</a><a href="#">Studio</a><a href="#">Contact</a></div>
+          <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,3vw,32px)"><a href="#work">Work</a><a href="#services">Services</a><a href="#studio">Studio</a><a href="#contact">Contact</a></div>
         </div>
         <div style="padding:clamp(32px,6vw,64px) clamp(20px,4vw,40px) clamp(24px,4vw,40px);border-top:1px solid #1C1A18"><img src="assets/logo/ma-wordmark-line-ink.svg" alt="Modern Artifact" style="width:100%;display:block"></div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));border-top:1px solid #1C1A18">
@@ -45,14 +55,14 @@ body{margin:0;background:#1C1A18;color:#1C1A18;font-family:'Hanken Grotesk',sans
             </div>
           </div>
         </div>
-        <div style="background:#EFECE6;border-top:1px solid #1C1A18;padding:clamp(72px,10vw,120px) clamp(20px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(32px,5vw,64px)">
+        <div id="studio" style="background:#EFECE6;border-top:1px solid #1C1A18;padding:clamp(72px,10vw,120px) clamp(20px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(32px,5vw,64px)">
           <div style="font-family:'Gilda Display',serif;font-size:clamp(36px,4.5vw,56px);line-height:1.02;letter-spacing:-0.025em;text-wrap:pretty">We believe the most memorable brands become artifacts of their time.</div>
           <div style="display:flex;flex-direction:column;justify-content:flex-end;gap:24px;font-size:clamp(17px,1.6vw,19px);line-height:1.55">
             <span>Shaped by culture, guided by a distinct point of view, and built to live beyond the moment.</span>
             <span style="color:#6E5341">We help brands define what they want to say, understand why it matters, and build a world around it.</span>
           </div>
         </div>
-        <div style="background:#1C1A18;color:#EFECE6;padding:clamp(64px,8vw,100px) clamp(20px,4vw,40px) clamp(72px,10vw,120px);display:flex;flex-direction:column;gap:clamp(32px,4vw,48px)">
+        <div id="work" style="background:#1C1A18;color:#EFECE6;padding:clamp(64px,8vw,100px) clamp(20px,4vw,40px) clamp(72px,10vw,120px);display:flex;flex-direction:column;gap:clamp(32px,4vw,48px)">
           <div style="display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;align-items:baseline"><span style="font-family:'Gilda Display',serif;font-size:clamp(60px,10vw,120px);line-height:1;letter-spacing:-0.035em">Work</span><span style="font-size:15px">Serviette, BUR BUR and Topicals</span></div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(28px,2vw,20px) 20px">
             <div style="display:flex;flex-direction:column;gap:12px"><div style="aspect-ratio:4/5;position:relative;overflow:hidden;background:#24211E"><video ref="{{ ref_serv }}" src="assets/work/serviette-reel.mp4" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video><button onClick="{{ toggle_serv }}" aria-label="{{ label_serv }}" title="{{ label_serv }}" style="position:absolute;right:16px;bottom:16px;z-index:2;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;background:rgba(239,236,230,.92);color:#1C1A18;border:0;border-radius:50%;cursor:pointer"><sc-if value="{{ on_serv }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"></path><path d="M16.5 8.5a5 5 0 0 1 0 7M19.5 5.5a9 9 0 0 1 0 13"></path></svg></sc-if><sc-if value="{{ off_serv }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"></path><path d="M17 9l5 6M22 9l-5 6"></path></svg></sc-if></button><div style="position:absolute;left:20px;top:16px;font-family:'Gilda Display',serif;font-size:clamp(36px,3.4vw,44px);letter-spacing:-0.02em;color:#EFECE6">Serviette</div></div><div style="display:flex;justify-content:space-between;font-size:11px;font-weight:500;letter-spacing:0.12em;color:#C9C2B6"><span>BRAND WORLD</span><span>2026</span></div></div>
@@ -60,7 +70,7 @@ body{margin:0;background:#1C1A18;color:#1C1A18;font-family:'Hanken Grotesk',sans
             <div style="display:flex;flex-direction:column;gap:12px"><div style="aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#2A2724 0 2px,#24211E 2px 12px);display:flex;align-items:center;justify-content:center;font-family:'Gilda Display',serif;font-size:clamp(40px,4vw,52px);letter-spacing:-0.02em">Topicals</div><div style="display:flex;justify-content:space-between;font-size:11px;font-weight:500;letter-spacing:0.12em;color:#C9C2B6"><span>TALENT &amp; CULTURE</span><span>2026</span></div></div>
           </div>
         </div>
-        <div style="padding:clamp(72px,10vw,120px) clamp(20px,4vw,40px);display:flex;flex-direction:column;gap:clamp(32px,4vw,56px)">
+        <div id="services" style="padding:clamp(72px,10vw,120px) clamp(20px,4vw,40px);display:flex;flex-direction:column;gap:clamp(32px,4vw,56px)">
           <div style="display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;align-items:baseline"><span style="font-family:'Gilda Display',serif;font-size:clamp(60px,10vw,120px);line-height:1;letter-spacing:-0.035em">Services</span><span style="font-size:15px">Six disciplines, one point of view</span></div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));column-gap:64px">
             <sc-for list="{{ services }}" as="s" hint-placeholder-count="6">
@@ -82,13 +92,21 @@ body{margin:0;background:#1C1A18;color:#1C1A18;font-family:'Hanken Grotesk',sans
           </div>
           <div style="position:relative;overflow:hidden;min-height:clamp(420px,45vw,560px);background:#1C1A18"><video ref="{{ ref_diff }}" src="assets/work/laneige-katseye.mp4" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video><button onClick="{{ toggle_diff }}" aria-label="{{ label_diff }}" title="{{ label_diff }}" style="position:absolute;right:16px;bottom:16px;z-index:2;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;background:rgba(239,236,230,.92);color:#1C1A18;border:0;border-radius:50%;cursor:pointer"><sc-if value="{{ on_diff }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"></path><path d="M16.5 8.5a5 5 0 0 1 0 7M19.5 5.5a9 9 0 0 1 0 13"></path></svg></sc-if><sc-if value="{{ off_diff }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"></path><path d="M17 9l5 6M22 9l-5 6"></path></svg></sc-if></button></div>
         </div>
-        <div style="background:#1C1A18;color:#EFECE6;padding:clamp(88px,11vw,140px) clamp(20px,4vw,40px) 32px;display:flex;flex-direction:column;align-items:center;gap:clamp(72px,10vw,120px)">
+        <div id="contact" style="background:#1C1A18;color:#EFECE6;padding:clamp(88px,11vw,140px) clamp(20px,4vw,40px) 32px;display:flex;flex-direction:column;align-items:center;gap:clamp(72px,10vw,120px)">
           <div style="display:flex;flex-direction:column;align-items:center;gap:36px;text-align:center">
             <img src="assets/logo/ma-insignia-bone.svg" alt="" style="height:clamp(44px,5vw,64px);display:block">
             <div style="font-family:'Gilda Display',serif;font-size:clamp(56px,9.5vw,112px);line-height:0.94;letter-spacing:-0.035em">Stand for<br>something.</div>
-            <a href="#" style="font-size:clamp(16px,1.6vw,18px);font-weight:500;border-bottom:1px solid #EFECE6;padding-bottom:4px">hello@modernartifact.studio</a>
+            <form class="ma-form" name="contact" method="POST" action="/" onSubmit="{{ submit_contact }}">
+              <input type="hidden" name="form-name" value="contact">
+              <div class="ma-hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></div>
+              <label>NAME<input type="text" name="name" autocomplete="name" required></label>
+              <label>EMAIL<input type="email" name="email" autocomplete="email" required></label>
+              <label>MESSAGE<textarea name="message" rows="3" required></textarea></label>
+              <button type="submit" disabled="{{ sending }}">{{ btn_label }}</button>
+              <p class="ma-note" role="status" aria-live="polite">{{ form_note }}</p>
+            </form>
           </div>
-          <div style="width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px 24px;text-align:center;font-size:13px;font-weight:500;color:#C9C2B6"><a href="https://innovaredge.com" target="_blank" rel="noopener">Made by Innovar Edge</a><span>modernartifact.studio</span><span>Instagram</span></div>
+          <div style="width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px 24px;text-align:center;font-size:13px;font-weight:500;color:#C9C2B6"><a href="https://innovaredge.com" target="_blank" rel="noopener">Made by Innovar Edge</a><span>modernartifact.studio</span><a href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTg3ODI2MjY2OTI2OTc1?vrfl=bGk2NWZ3MTVnZDdy" target="_blank" rel="noopener">Instagram</a></div>
         </div>
       </div>
 </main>
@@ -96,7 +114,25 @@ body{margin:0;background:#1C1A18;color:#1C1A18;font-family:'Hanken Grotesk',sans
 <script type="text/x-dc" data-dc-script data-props="{&quot;showGrain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
   vids = { hero: React.createRef(), diff: React.createRef(), serv: React.createRef() };
-  state = { unmuted: {} };
+  state = { unmuted: {}, formStatus: 'idle' };
+  submitContact = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    this.setState({ formStatus: 'sending' });
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      });
+      if (!res.ok) throw new Error(res.status);
+      form.reset();
+      this.setState({ formStatus: 'sent' });
+    } catch (err) {
+      this.setState({ formStatus: 'error' });
+    }
+  };
   syncMute() {
     document.querySelectorAll('video').forEach(v => {
       const k = Object.keys(this.vids).find(x => this.vids[x].current === v);
@@ -123,8 +159,13 @@ class Component extends DCLogic {
       sv['on_' + k] = !!this.state.unmuted[k];
       sv['off_' + k] = !this.state.unmuted[k];
     }
+    const fs = this.state.formStatus;
     return {
       ...sv,
+      submit_contact: this.submitContact,
+      sending: fs === 'sending',
+      btn_label: fs === 'sending' ? 'Sending…' : fs === 'sent' ? 'Sent' : 'Send message',
+      form_note: fs === 'sent' ? "Thank you — we'll be in touch soon." : fs === 'error' ? 'Something went wrong. Please try again.' : '',
       showGrain: this.props.showGrain ?? true,
       services: [
         { num: '01', title: 'Brand Strategy & Worldbuilding', line: 'Defining what a brand stands for and building the world around it.', items: 'Positioning, narrative & messaging · Identity direction & creative territories · Voice, tone & storytelling · Cultural positioning · Brand world development' },
@@ -138,5 +179,13 @@ class Component extends DCLogic {
   }
 }
 </script>
+<!-- Static copy of the contact form so Netlify Forms detects it at deploy time (the visible form is rendered by the design runtime). -->
+<form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="contact">
+  <input name="bot-field">
+  <input type="text" name="name">
+  <input type="email" name="email">
+  <textarea name="message"></textarea>
+</form>
 </body>
 </html>
