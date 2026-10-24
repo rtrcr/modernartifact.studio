@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modern Artifact Studio — Coming Soon</title>
+<meta name="description" content="Modern Artifact Studio. A new portfolio is on the way — leave your email to hear when it launches.">
+<meta property="og:title" content="Modern Artifact Studio">
+<meta property="og:description" content="A new portfolio is on the way.">
+<meta property="og:url" content="https://modernartifact.studio/">
+<meta name="theme-color" content="#f3f1ec">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316150f'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' fill='%23f3f1ec' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  /* ---- Brand tokens: swap these when the visual identity is ready ---- */
+  :root {
+    --bg: #f3f1ec;
+    --ink: #16150f;
+    --muted: #6d6a60;
+    --line: #d9d5ca;
+    --accent: #c2410c;
+    --field: #ffffff;
+    --font-display: "Instrument Serif", Georgia, serif;
+    --font-body: "Inter", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12110d;
+      --ink: #eeebe3;
+      --muted: #9a968a;
+      --line: #2c2a23;
+      --accent: #f97316;
+      --field: #1b1a15;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 28px clamp(16px, 5vw, 64px);
+  }
+
+  header, footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .status { display: inline-flex; align-items: center; gap: 8px; }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .3 } }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 0;
+    max-width: 1100px;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(56px, 12vw, 168px);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .lede {
+    margin-top: 32px;
+    max-width: 34ch;
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--muted);
+  }
+
+  form {
+    margin-top: 40px;
+    display: flex;
+    gap: 8px;
+    max-width: 480px;
+    flex-wrap: wrap;
+  }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  input[type="email"] {
+    flex: 1 1 240px;
+    min-width: 0;
+    font: inherit;
+    color: var(--ink);
+    background: var(--field);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 14px 20px;
+    outline: none;
+    transition: border-color .15s;
+  }
+  input[type="email"]:focus { border-color: var(--ink); }
+  button {
+    font: inherit;
+    font-weight: 500;
+    color: var(--bg);
+    background: var(--ink);
+    border: 0;
+    border-radius: 999px;
+    padding: 14px 24px;
+    cursor: pointer;
+    transition: opacity .15s, transform .15s;
+  }
+  button:hover { opacity: .85; }
+  button:active { transform: scale(.98); }
+  button:disabled { opacity: .5; cursor: default; }
+  .hp { display: none; }
+  .msg {
+    margin-top: 14px;
+    min-height: 1.5em;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .msg.ok { color: var(--ink); }
+  .msg.err { color: var(--accent); }
+
+  footer { border-top: 1px solid var(--line); padding-top: 20px; }
+  footer a { color: inherit; text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+
+  @media (max-width: 520px) {
+    button { flex: 1 1 100%; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <span>Modern Artifact Studio</span>
+    <span class="status"><span class="dot"></span>In progress</span>
+  </header>
+
+  <main>
+    <h1>Something<br>is <em>taking shape.</em></h1>
+    <p class="lede">A new portfolio from Modern Artifact Studio is on the way. Leave your email and we'll let you know when it launches.</p>
+
+    <!-- Netlify Forms: submissions appear in the Netlify dashboard under Forms → signup -->
+    <form id="signup" name="signup" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="signup">
+      <label class="sr" for="email">Email address</label>
+      <input id="email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+      <input class="hp" type="text" name="bot-field" tabindex="-1" autocomplete="off">
+      <button type="submit">Notify me</button>
+    </form>
+    <p class="msg" id="msg" role="status" aria-live="polite"></p>
+  </main>
+
+  <footer>
+    <span>&copy; <span id="yr">2026</span> Modern Artifact Studio</span>
+    <a href="https://modernartifact.studio">modernartifact.studio</a>
+  </footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const form = document.getElementById('signup');
+  const msg = document.getElementById('msg');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = form.email.value.trim();
+    msg.className = 'msg';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      msg.textContent = 'Please enter a valid email address.';
+      msg.classList.add('err');
+      return;
+    }
+    const btn = form.querySelector('button');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      });
+      if (!res.ok) throw new Error();
+      form.reset();
+      msg.textContent = "You're on the list. Talk soon.";
+      msg.classList.add('ok');
+      btn.textContent = 'Done';
+    } catch {
+      msg.textContent = 'Something went wrong. Please try again.';
+      msg.classList.add('err');
+      btn.disabled = false;
+      btn.textContent = 'Notify me';
+    }
+  });
+</script>
+</body>
+</html>
