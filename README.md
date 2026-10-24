@@ -1,7 +1,7 @@
 # modernartifact.studio
 
-Coming-soon page for Modern Artifact Studio.
+Website for Modern Artifact (exported from Claude Design, "Production 1A").
 
 - **Hosting:** Netlify. Every push to `main` deploys automatically to https://modernartifact.studio
-- **Signups:** Netlify Forms (form name `signup`). View them in Netlify under Forms.
-- **Rebranding:** colors and fonts are CSS variables at the top of `index.html` (`:root` block), plus the dark-mode overrides right below it.
+- **Structure:** `index.html` (page), `support.js` (design runtime; loads React from unpkg), `assets/` (fonts, logos, videos), `netlify.toml` (publish root + long cache on `/assets/*`).
+- **Note:** assets are cached for a year, so when replacing a video or logo, give the new file a new name.
