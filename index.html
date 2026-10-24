@@ -118,7 +118,14 @@ class Component extends DCLogic {
   submitContact = async (e) => {
     e.preventDefault();
     const form = e.target;
-    if (!form.checkValidity()) { form.reportValidity(); return; }
+    // The design runtime drops `required`, so validate here.
+    const val = (n) => (form.elements[n].value || '').trim();
+    let bad = null;
+    if (!val('name')) bad = ['name', 'Please add your name.'];
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('email'))) bad = ['email', 'Please enter a valid email address.'];
+    else if (!val('message')) bad = ['message', 'Please add a short message.'];
+    if (bad) { form.elements[bad[0]].focus(); this.setState({ formStatus: 'invalid', formError: bad[1] }); return; }
+    if (val('bot-field')) { form.reset(); this.setState({ formStatus: 'sent' }); return; }
     this.setState({ formStatus: 'sending' });
     try {
       const res = await fetch('/', {
@@ -165,7 +172,7 @@ class Component extends DCLogic {
       submit_contact: this.submitContact,
       sending: fs === 'sending',
       btn_label: fs === 'sending' ? 'Sending…' : fs === 'sent' ? 'Sent' : 'Send message',
-      form_note: fs === 'sent' ? "Thank you — we'll be in touch soon." : fs === 'error' ? 'Something went wrong. Please try again.' : '',
+      form_note: fs === 'sent' ? "Thank you — we'll be in touch soon." : fs === 'error' ? 'Something went wrong. Please try again.' : fs === 'invalid' ? this.state.formError : '',
       showGrain: this.props.showGrain ?? true,
       services: [
         { num: '01', title: 'Brand Strategy & Worldbuilding', line: 'Defining what a brand stands for and building the world around it.', items: 'Positioning, narrative & messaging · Identity direction & creative territories · Voice, tone & storytelling · Cultural positioning · Brand world development' },
